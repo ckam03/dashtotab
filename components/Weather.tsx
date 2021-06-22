@@ -23,7 +23,7 @@ const Weather = () => {
     //api call
     const fetchWeatherData = async () => {
       //const url = `https://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${APIKEY}`;
-      const url = 'https://localhost:3000/api/weather';
+      const url = 'http://localhost:3000/api/weather';
       const result = await fetch(url, {
         method: 'GET',
         mode: 'cors',
@@ -57,7 +57,7 @@ const Weather = () => {
             <div className="flex items-center text-4xl text-gray-800 p-4">
                {/* {<img src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="icon" />}  */}
               <Image
-                src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+                src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
                 alt="icon"
                 width={500}
                 height={500}

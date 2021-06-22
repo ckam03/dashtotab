@@ -26,7 +26,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   await runMiddleware(req, res, cors)
-  const url = `http://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${process.env.WEATHERAPIKEY}`;
+  const url = `https://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${process.env.WEATHERAPIKEY}`;
   const response = await fetch(url);
   const result = await response.json();
   return res.status(200).json({ result });

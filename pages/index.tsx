@@ -21,7 +21,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchImage = async () => {
-      const url = `https://dashtotab.netlify.app/api/background`;
+      const url = `/api/background`;
       const result = await fetch(url, {
         method: "GET",
         mode: "cors",

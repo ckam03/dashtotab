@@ -23,7 +23,7 @@ const Weather = () => {
     //api call
     const fetchWeatherData = async () => {
       //const url = `https://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${APIKEY}`;
-      const url = 'https://dashtotab.netlify.app/api/weather';
+      const url = '/api/weather';
       const result = await fetch(url, {
         method: 'GET',
         mode: 'cors',

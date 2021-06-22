@@ -22,7 +22,13 @@ export default function Home() {
   useEffect(() => {
     const fetchImage = async () => {
       const url = `http://localhost:3000/api/background`;
-      const result = await fetch(url);
+      const result = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       const ImageEvent = await result.json();
       setImageData(ImageEvent.result[1].urls.full);
       console.log(ImageEvent);

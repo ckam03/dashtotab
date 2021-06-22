@@ -26,7 +26,10 @@ const Weather = () => {
       const url = 'http://localhost:3000/api/weather';
       const result = await fetch(url, {
         method: 'GET',
-        mode: 'cors'
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
       });
       const weatherEvents = await result.json();
 

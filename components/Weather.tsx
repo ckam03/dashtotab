@@ -23,7 +23,7 @@ const Weather = () => {
     //api call
     const fetchWeatherData = async () => {
       //const url = `https://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${APIKEY}`;
-      const url = 'http://localhost:3000/api/weather';
+      const url = 'https://localhost:3000/api/weather';
       const result = await fetch(url, {
         method: 'GET',
         mode: 'cors',
@@ -40,7 +40,7 @@ const Weather = () => {
         icon: weatherEvents.result.list[0].weather[0].icon,
         description: weatherEvents.result.list[0].weather[0].description,
       });
-      console.log(weatherEvents);
+      //console.log(weatherEvents);
     };
     fetchWeatherData();
   }, []);

@@ -8,7 +8,7 @@ const Quotes = () => {
     const fetchQuote = async () => {
       const res = await fetch("https://quotes.rest/qod");
       const response = await res.json();
-      console.log(response);
+      //console.log(response);
       setQuotes({
         quote: response.contents.quotes[0].quote,
         author: response.contents.quotes[0].author,

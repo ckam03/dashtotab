@@ -31,7 +31,7 @@ export default function Home() {
       });
       const ImageEvent = await result.json();
       setImageData(ImageEvent.result[1].urls.full);
-      console.log(ImageEvent);
+      //console.log(ImageEvent);
     };
     fetchImage();
   }, []);

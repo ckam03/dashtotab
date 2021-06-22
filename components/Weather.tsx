@@ -51,7 +51,7 @@ const Weather = () => {
             <div className="flex items-center text-4xl text-gray-800 p-4">
                {/* {<img src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="icon" />}  */}
               <Image
-                src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
                 alt="icon"
                 width={500}
                 height={500}

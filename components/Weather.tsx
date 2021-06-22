@@ -23,7 +23,7 @@ const Weather = () => {
     //api call
     const fetchWeatherData = async () => {
       //const url = `https://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${APIKEY}`;
-      const url = 'http://localhost:3000/api/weather';
+      const url = 'https://dashtotab.netlify.app/api/weather';
       const result = await fetch(url, {
         method: 'GET',
         mode: 'cors',
@@ -40,7 +40,7 @@ const Weather = () => {
         icon: weatherEvents.result.list[0].weather[0].icon,
         description: weatherEvents.result.list[0].weather[0].description,
       });
-      //console.log(weatherEvents);
+      //console.log(weatherData.icon);
     };
     fetchWeatherData();
   }, []);
@@ -57,7 +57,7 @@ const Weather = () => {
             <div className="flex items-center text-4xl text-gray-800 p-4">
                {/* {<img src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="icon" />}  */}
               <Image
-                src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
                 alt="icon"
                 width={500}
                 height={500}

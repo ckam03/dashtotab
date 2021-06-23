@@ -9,8 +9,20 @@ import Goal from "../components/Goal";
 import Settings from "../components/Settings";
 import Greeting from "../components/Greeting";
 import { ToggleContext } from "../components/ToggleContext";
+import { GetStaticProps } from "next";
 
-export default function Home() {
+interface apiProps {
+  imageResults: any;
+}
+export const getStaticProps: GetStaticProps = async (context) => {
+  const response = await fetch('http://localhost:3000/api/background');
+  const data = await response.json();
+  console.log(data)
+  return {
+    props: { imageResults: data } ,
+  }
+}
+const Home: React.FC <apiProps> = ({ imageResults }) => {
   const [toggled, setToggled] = useState<boolean>(true);
   const [toggled2, setToggled2] = useState<boolean>(true);
   const [toggled3, setToggled3] = useState<boolean>(true);
@@ -18,23 +30,31 @@ export default function Home() {
   const [toggled5, setToggled5] = useState<boolean>(true);
 
   const [imageData, setImageData] = useState<any>();
-
   useEffect(() => {
-    const fetchImage = async () => {
-      const url = `/api/background`;
-      const result = await fetch(url, {
-        method: "GET",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const ImageEvent = await result.json();
-      setImageData(ImageEvent.result[1].urls.full);
-      //console.log(ImageEvent);
-    };
-    fetchImage();
-  }, []);
+    setImageData(imageResults.result[1].urls.full)
+    
+    return () => {
+      
+    }
+  }, [])
+  console.log(imageData)
+  //  useEffect(() => {
+    //  const fetchImage = async () => {
+      //  const url = '/api/background';
+      //  const result = await fetch(url, {
+        //  method: "GET",
+        //  mode: "cors",
+        //  headers: {
+          //  "Content-Type": "application/json",
+        //  },
+      //  });
+      //  const ImageEvent = await result.json();
+      //  setImageData(ImageEvent.result[1].urls.full);
+      //  console.log(ImageEvent);
+    //  };
+    //  fetchImage();
+  //  }, []);
+  //console.log(imageResults[0].urls.full)
   return (
     <div className="">
       <Head>
@@ -80,3 +100,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

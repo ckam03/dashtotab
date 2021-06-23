@@ -15,7 +15,7 @@ interface apiProps {
   imageResults: any;
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await fetch('http://localhost:3000/api/background');
+  const response = await fetch('https://dashtotab-ckam03.vercel.app/api/background');
   const data = await response.json();
   return {
     props: { imageResults: data } ,

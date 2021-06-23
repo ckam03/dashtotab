@@ -16,13 +16,9 @@ const Weather = () => {
   });
   const [location, setLocation] = useState<string>("");
 
-//   const setweatherLocation: weatherLocation = (location: string) => {
-//     setLocation(location);
-//   };
   useEffect(() => {
     //api call
     const fetchWeatherData = async () => {
-      //const url = `https://api.openweathermap.org/data/2.5/forecast?q=Phoenix,us&units=imperial&&appid=${APIKEY}`;
       const url = '/api/weather';
       const result = await fetch(url, {
         method: 'GET',
@@ -32,6 +28,7 @@ const Weather = () => {
         },
       });
       const weatherEvents = await result.json();
+      console.log(weatherEvents);
 
       //sets state of weatherData object
       setweatherData({
@@ -40,7 +37,6 @@ const Weather = () => {
         icon: weatherEvents.result.list[0].weather[0].icon,
         description: weatherEvents.result.list[0].weather[0].description,
       });
-      //console.log(weatherData.icon);
     };
     fetchWeatherData();
   }, []);
@@ -51,11 +47,9 @@ const Weather = () => {
         toggled ? (
           <div className="flex flex-col items-center bg-white bg-opacity-40 backdrop-filter backdrop-blur-2xl rounded-lg absolute w-64">
             <span className="text-2xl text-gray-800 bg-green-500 w-full rounded-t-lg text-center p-4 flex items-center justify-center">
-              {/* <WeatherForm weatherLocation={setweatherLocation}/> */}
               {weatherData.location}
             </span>
             <div className="flex items-center text-4xl text-gray-800 p-4">
-               {/* {<img src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="icon" />}  */}
               <Image
                 src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
                 alt="icon"

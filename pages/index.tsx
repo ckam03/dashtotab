@@ -14,13 +14,13 @@ import { GetServerSideProps } from "next";
 interface apiProps {
   imageResults: any;
 }
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await fetch('https://dashtotab-ckam03.vercel.app/api/background');
-  const data = await response.json();
-  return {
-    props: { imageResults: data } ,
-  }
-}
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const response = await fetch('http://localhost:3000/api/background');
+//   const data = await response.json();
+//   return {
+//     props: { imageResults: data } ,
+//   }
+// }
 const Home: React.FC <apiProps> = ({ imageResults }) => {
   const [toggled, setToggled] = useState<boolean>(true);
   const [toggled2, setToggled2] = useState<boolean>(true);
@@ -29,31 +29,31 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
   const [toggled5, setToggled5] = useState<boolean>(true);
 
   const [imageData, setImageData] = useState<any>();
-  useEffect(() => {
-    setImageData(imageResults.result[1].urls.full)
+  // useEffect(() => {
+  //   setImageData(imageResults.result[1].urls.full)
     
-    return () => {
+  //   return () => {
       
-    }
-  }, [imageResults.result])
+  //   }
+  // }, [imageResults.result])
 
   
-  //  useEffect(() => {
-    //  const fetchImage = async () => {
-      //  const url = '/api/background';
-      //  const result = await fetch(url, {
-        //  method: "GET",
-        //  mode: "cors",
-        //  headers: {
-          //  "Content-Type": "application/json",
-        //  },
-      //  });
-      //  const ImageEvent = await result.json();
-      //  setImageData(ImageEvent.result[1].urls.full);
-      //  console.log(ImageEvent);
-    //  };
-    //  fetchImage();
-  //  }, []);
+  useEffect(() => {
+    const fetchImage = async () => {
+       const url = '/api/background';
+      const result = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const ImageEvent = await result.json();
+      setImageData(ImageEvent.result[1].urls.full);
+      console.log(ImageEvent);
+    };
+    fetchImage();
+  }, []);
   //console.log(imageResults[0].urls.full)
   return (
     <div className="">

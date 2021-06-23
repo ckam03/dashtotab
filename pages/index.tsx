@@ -17,7 +17,6 @@ interface apiProps {
 export const getStaticProps: GetStaticProps = async (context) => {
   const response = await fetch('http://localhost:3000/api/background');
   const data = await response.json();
-  console.log(data)
   return {
     props: { imageResults: data } ,
   }
@@ -36,8 +35,7 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
     return () => {
       
     }
-  }, [])
-  console.log(imageData)
+  }, [imageResults.result])
   //  useEffect(() => {
     //  const fetchImage = async () => {
       //  const url = '/api/background';

@@ -1,4 +1,3 @@
-
 interface TogglerProps {
     name: string;
     toggle: any;
@@ -8,7 +7,6 @@ interface TogglerProps {
   }
   
   const Toggler: React.FC<TogglerProps> = ({ name,toggle,isOn,toggleID }) => {
-  
     return (
       <>
         <label

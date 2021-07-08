@@ -22,7 +22,7 @@ const NewGoalForm: React.FC<props> = ({ addGoal }) => {
         onChange={(event) => {
           setnewGoal(event.target.value);
         }}
-        className="focus:ring-1 focus:border-none focus:ring-green-500 bg-white bg-opacity-70 text-gray-700 p-1 pl-2 rounded-lg"
+        className="focus:border-green-500 focus:ring-green-500 bg-white bg-opacity-70 text-gray-700 p-1 pl-2 rounded-lg"
         onKeyDown={onSubmit}
       ></input>
     </>

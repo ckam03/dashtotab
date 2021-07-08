@@ -28,7 +28,7 @@ const Background = () => {
   return (
     <div className="flex flex-col">
       <select
-        className="w-52 border-gray-300 focus:border-green-500 rounded-lg shadow-sm"
+        className="w-52 border-gray-300 focus:border-green-500 focus:ring-green-500 rounded-lg shadow-sm"
         name="backgrounds"
         value={value}
         onChange={(event) => handleChange(event.target.value)}

@@ -4,6 +4,9 @@ import { ToggleContext } from "./ToggleContext";
 import Background from "./Background";
 import Toggler from "./Toggler";
 
+interface MenuProps {
+  animate: any;
+}
 const SettingsMenu = () => {
   const {
     toggled,

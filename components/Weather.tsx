@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 //import WeatherForm from './WeatherForm';
 import { ToggleContext } from './ToggleContext';
 import Image from 'next/image';
+import WeatherIcon from "./WeatherIcon";
 
 const Weather = () => {
   //toggler state
@@ -9,12 +10,11 @@ const Weather = () => {
 
   //initialize state
   const [weatherData, setweatherData] = useState({
-    temperature: "",
+    temperature: 0,
     location: "",
     icon: "",
     description: "",
   });
-  const [location, setLocation] = useState<string>("");
 
   useEffect(() => {
     //api call
@@ -28,14 +28,17 @@ const Weather = () => {
         },
       });
       const weatherEvents = await result.json();
-      console.log(weatherEvents);
+      console.log(weatherEvents)
 
+      let string = weatherEvents.result.timezone;
+      let res = string.split("/")
+      
       //sets state of weatherData object
       setweatherData({
-        temperature: weatherEvents.result.list[0].main.temp,
-        location: weatherEvents.result.city.name,
-        icon: weatherEvents.result.list[0].weather[0].icon,
-        description: weatherEvents.result.list[0].weather[0].description,
+        temperature: Math.trunc(weatherEvents.result.current.temp),
+        location: res[1],
+        icon: weatherEvents.result.current.weather[0].icon,
+        description: weatherEvents.result.current.weather[0].description,
       });
     };
     fetchWeatherData();
@@ -45,22 +48,17 @@ const Weather = () => {
       {
         //if toggled is true, show the component
         toggled ? (
-          <div className="flex flex-col items-center bg-white bg-opacity-40 backdrop-filter backdrop-blur-2xl rounded-lg absolute w-64">
-            <span className="text-2xl text-gray-800 bg-green-500 w-full rounded-t-lg text-center p-4 flex items-center justify-center">
+          <div className="flex flex-col items-center p-2 bg-white text-gray-800 backdrop-filter backdrop-blur-xl bg-opacity-60 rounded-lg absolute text-xl">
+            <span className="text-2xl text-center pt-4 flex items-center justify-center">
               {weatherData.location}
             </span>
-            <div className="flex items-center text-4xl text-gray-800 p-4">
-              <Image
-                src={`https://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
-                alt="icon"
-                width={500}
-                height={500}
-              /> 
-              {weatherData.temperature}&deg;
+            <div className="flex items-center text-5xl space-x-2 px-2">
+              <span className=""><WeatherIcon iconCode={weatherData.icon}/> </span>
+              <div>{weatherData.temperature}&deg;</div>
             </div>
-            <span className="text-gray-800 text-2xl ">
-              {weatherData.description}
-            </span>
+            {weatherData.description}
+            {/* <span className="text-gray-800 text-2xl pb-4">
+            </span> */}
           </div>
         ) : (
           false

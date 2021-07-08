@@ -8,6 +8,7 @@ import Quotes from "../components/Quotes";
 import Goal from "../components/Goal";
 import Settings from "../components/Settings";
 import Greeting from "../components/Greeting";
+import ImageUser from "../components/ImageUser";
 import { ToggleContext } from "../components/ToggleContext";
 import { GetServerSideProps } from "next";
 
@@ -28,15 +29,12 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
   const [toggled4, setToggled4] = useState<boolean>(true);
   const [toggled5, setToggled5] = useState<boolean>(true);
 
-  const [imageData, setImageData] = useState<any>();
-  // useEffect(() => {
-  //   setImageData(imageResults.result[1].urls.full)
-    
-  //   return () => {
-      
-  //   }
-  // }, [imageResults.result])
-
+  const [imageData, setImageData] = useState<any>({
+    image: "",
+    author: "",
+    location: "",
+    link: ""
+  });
   
   useEffect(() => {
     const fetchImage = async () => {
@@ -49,7 +47,12 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
         },
       });
       const ImageEvent = await result.json();
-      setImageData(ImageEvent.result[1].urls.full);
+      setImageData({
+        image:ImageEvent.result[1].urls.full,
+        author:ImageEvent.result[1].user.name,
+        location:ImageEvent.result[1].user.location,
+        link:ImageEvent.result[1].links.html
+      });
       console.log(ImageEvent);
     };
     fetchImage();
@@ -79,7 +82,7 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
       >
         {/* <Image src={imageData} alt="background" width={500} height={500} />  */}
         <div
-          style={{ backgroundImage: `url(${imageData})` }}
+          style={{ backgroundImage: `url(${imageData.image})` }}
           className="text-white pt-4 px-10 font-poppins h-screen w-screen bg-cover bg-center outline-none"
         >
           <Settings />
@@ -95,6 +98,9 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
           </div>
           <div className="w-screen bottom-0 fixed">
             <Quotes />
+            <div className="">
+              <ImageUser location={imageData.location} name={imageData.author} link={imageData.link} />
+            </div>
           </div>
         </div>
       </ToggleContext.Provider>

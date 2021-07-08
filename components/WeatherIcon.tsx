@@ -19,7 +19,7 @@ const WeatherIcon: React.FC<IconProp> = ({ iconCode }) => {
     case "02d":
       icon = (
         <Image
-          src="/../public/cloudyday.png"
+          src="../public/cloudyday.png"
           height={100}
           width={100}
           alt="icon"

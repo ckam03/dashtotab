@@ -83,7 +83,7 @@ const Home: React.FC <apiProps> = ({ imageResults }) => {
         {/* <Image src={imageData} alt="background" width={500} height={500} />  */}
         <div
           style={{ backgroundImage: `url(${imageData.image})` }}
-          className="text-white pt-4 px-10 font-poppins h-screen w-screen bg-cover bg-center outline-none"
+          className="text-white pt-4 px-10 font-nunito h-screen w-screen bg-cover bg-center outline-none"
         >
           <Settings />
           <div className="flex justify-between pt-20">
